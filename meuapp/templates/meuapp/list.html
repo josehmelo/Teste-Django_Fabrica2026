@@ -3,19 +3,94 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Título da Página</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Pessoas Cadastradas</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 700px;
+        margin: 40px auto;
+        background-color: #f5f5f5;
+        color: #333;
+      }
+
+      h1 {
+        border-bottom: 2px solid #4a90d9;
+        padding-bottom: 10px;
+        color: #4a90d9;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .pessoa-card {
+        background: #fff;
+        border-radius: 8px;
+        padding: 14px 20px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      }
+
+      .pessoa-info span {
+        display: block;
+      }
+
+      .pessoa-info .nome {
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      .pessoa-info .email {
+        font-size: 13px;
+        color: #777;
+      }
+
+      .btn {
+        padding: 6px 14px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 13px;
+      }
+
+      .btn-editar {
+        background-color: #4a90d9;
+        color: #fff;
+      }
+
+      .btn-cadastrar {
+        display: inline-block;
+        margin-top: 20px;
+        background-color: #2ecc71;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+      }
+    </style>
   </head>
   <body>
-  <h1>Pessoas cadastradas</h1>
 
-  <ul>
+    <h1>Pessoas Cadastradas</h1>
+
+    <ul>
       {% for pessoa in pessoas %}
-      <li>{{pessoa.nome }}</li>
-      <li>{{pessoa.email }}</li>
+      <li class="pessoa-card">
+        <div class="pessoa-info">
+          <span class="nome">{{ pessoa.nome }}</span>
+          <span class="email">{{ pessoa.email }}</span>
+        </div>
+        <a href="{% url 'atualizar_pessoa' pessoa.id %}" class="btn btn-editar">Editar</a>
+        <a href="{% url 'deletar_pessoa' pessoa.id %}" class="btn btn-deletar">Deletar</a>
+      </li>
       {% endfor %}
-  </ul>
-  <a href = "{% url 'criar_pessoa' %}">Cadastrar Nova Pessoa</a>
+    </ul>
+
+    <a href="{% url 'criar_pessoa' %}" class="btn-cadastrar">+ Cadastrar Nova Pessoa</a>
 
   </body>
 </html>

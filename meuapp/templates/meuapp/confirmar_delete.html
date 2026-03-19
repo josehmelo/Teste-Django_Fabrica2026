@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar exclusão</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 500px;
+        margin: 40px auto;
+        background-color: #f5f5f5;
+        color: #333;
+      }
+
+      h1 {
+        color: #e74c3c;
+        border-bottom: 2px solid #e74c3c;
+        padding-bottom: 10px;
+      }
+
+      .card {
+        background: #fff;
+        padding: 24px;
+        border-radius: 8px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+      }
+
+      .aviso {
+        background-color: #fdecea;
+        border-left: 4px solid #e74c3c;
+        padding: 10px 14px;
+        border-radius: 4px;
+        font-size: 14px;
+        margin-bottom: 20px;
+        color: #c0392b;
+      }
+
+      .botoes {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      button {
+        flex: 1;
+        padding: 10px;
+        background-color: #e74c3c;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #c0392b;
+      }
+
+      .btn-cancelar {
+        flex: 1;
+        padding: 10px;
+        background-color: #bdc3c7;
+        color: #333;
+        border-radius: 6px;
+        text-decoration: none;
+        font-size: 14px;
+        text-align: center;
+      }
+
+      .btn-cancelar:hover {
+        background-color: #a0a6aa;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>Deletar {{ pessoa.nome }}?</h1>
+    <div class="card">
+      <div class="aviso">
+        Esta ação não pode ser desfeita.
+      </div>
+      <p>Tem certeza que deseja deletar <strong>{{ pessoa.nome }}</strong>?</p>
+      <form method="POST">
+        {% csrf_token %}
+        <div class="botoes">
+          <button type="submit">Confirmar exclusão</button>
+          <a href="{% url 'listar_pessoas' %}" class="btn-cancelar">Cancelar</a>
+        </div>
+      </form>
+    </div>
+
+  </body>
+</html>
