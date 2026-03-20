@@ -1,10 +1,15 @@
 from email.policy import default
 from venv import create
+from django.urls import reverse_lazy
+from django.views.generic import FormView
+from .models import ViaCep
+from .forms import ViaCepForm
+import requests
 
 from django.urls import reverse_lazy
 import requests
 from django.shortcuts import render
-from django.views.generic import FormView, ListView, DetailView, DateDetailView
+from django.views.generic import FormView, ListView, DetailView, DateDetailView, DeleteView
 from .forms import ViaCep
 from .forms import ViaCepForm
 
@@ -40,6 +45,9 @@ class ViaCepView(FormView):
             form.add_error('cep', 'Error ao consultar a API')
             return self.form_invalid(form)
         return super().form_valid(form)
+
+ class ViaCepDeletelView(DeleteView):
+
 
 
 
