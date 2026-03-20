@@ -3,6 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.ViaCepListView.as_view(), name='form'),
+    path('', views.ViaCepView.as_view(), name='form'),
   
 ]
