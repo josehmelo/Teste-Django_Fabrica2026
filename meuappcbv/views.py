@@ -21,16 +21,16 @@ class ViaCepView(FormView):
         if response.status_code == 200:
             data = response.json()
             if "erro" not in data:
-                cep_obj, create = ViaCep.objects.update_or_create(
-                    cep=cep
-                    defaults = {
-                        'logradouro': data.get('logradouro', ""),
-                        'bairro': data.get('bairro',''),
-                        'localidade': data.get('localidade', ""),
-                        'uf': data.get('uf', "")
+                cep_obj, created = ViaCep.objects.update_or_create(
+                    cep=cep,
+                    defaults={
+                        'logradouro': data.get('logradouro', ''),
+                        'bairro': data.get('bairro', ''),
+                        'localidade': data.get('localidade', ''),
+                        'uf': data.get('uf', ''),
                     }
                 )
-
+                 
                 self.object = cep_obj
             else:
                 form.add_error('cep', 'CEP não encontrado na API')
